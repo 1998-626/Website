@@ -1,0 +1,569 @@
+/*----------------------------------------------------------*/
+/*BANNER QUE SE ACTUALIZA CADA VEZ QUE SE CARGA EL SITIO WEB*/
+/*----------------------------------------------------------*/
+.banner_principal {
+  display: block; /*Elimina el espacio en blanco debajo de la imagen*/
+  width: 100%;  /*Ocupa todo el ancho disponible de la pantalla en la que se abra el sitio web*/
+  /* Esto evita que la imagen crezca infinito hacia abajo */
+  height: 400px;  /*Define la altura del banner*/
+  
+  object-fit: cover;      /* Recorta los lados para que quepa en el alto de 450px */
+  object-position: center; /* Centra el contenido (la modelo y el texto) */
+}
+
+/* Ajuste para celulares */
+@media (max-width: 768px) { /*@media es una función que aplica condiciones de estilo sólo si se cumple la condición de tamaño del paréntesis*/
+  .banner_principal {
+    height: 250px;        /* En la versión móvil el banner reduce su altura para no ocupar mucho espacio en la pantalla  */
+    object-position: center;  /*Asegura que el centro de la imagen sea siempre visible. La imagen no se desplaza*/
+  }
+}
+/*--------------------------*/
+/*ESTILO DE LA BARRA DE MENÚ*/
+/*--------------------------*/
+.barra_de_menu {
+  background: rgba(26, 26, 26,0.99); /*Define el color de la barra de menú con 99% de opacidad*/
+  width: 100%;
+  position: sticky; /*La barra de menú se pega al borde superior cuando se hace scroll en el sitio web*/ 
+  z-index: 100; /*Asegura que la barra de menú quede por encima de las imágenes*/ 
+
+  /*Esto pone el logo de lado izquierdo y el texto del menú del lado derecho*/
+  display: flex; /*Activa el flexbox para alinear el logo del sitio web con los textos de la barra de menú*/
+  justify-content: space-between; /*Empuja el logo a la izquierda y los textos de la bara de menú a la derecha*/ 
+  align-items: center; /* Centra verticalmente logo y texto */
+  padding: 0 20px; /* Espacio a los lados para que no pegue al borde */
+  box-sizing: border-box;
+}
+
+.logo img {
+  height: 50px; /*Ajusta el tamaño del logo*/
+  display: block;
+}
+
+nav ul {
+  list-style: none; /*Quita los puntos que se crean en el HTML cuando se escribe una lista para la barra de menú*/ 
+  overflow: hidden; 
+}
+
+nav ul li {
+  float: left;/*Alinea los elementos uno alado del otro en la versión de computadora*/
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+nav ul li a {
+  display: block;
+  padding: 10px; /*Da un espacio entre un texto y otro para que el usuario pueda dar click cómodamente*/ 
+  color: #fff; /*Color del texto en la barra del menú cuando no tiene el cursor del mouse encima*/
+  text-decoration: none; /*Quita el subrayado de los enlaces*/ 
+}
+nav ul li:hover {
+  background: #BCCF0D; /*Cuando se pone el cursor del mouse sobre el texto lo sombrea*/
+}
+
+nav ul li:hover a {
+  color: #37373a; /* Aquí cambiamos el texto a negro al pasar el mouse */
+}
+/*Estilo de la barra de menú para la versión del celular*/
+/*Boton toggle*/
+.menu-toggle{
+    display: none; /*Se oculta cuando lo abrimos en computadora*/
+    flex-direction: column; /*Alinea las 3 líneas del menú una sobre otra, es un recurso visual*/ 
+    cursor: pointer; /*Cambia el cursor a "mano" al pasar por encima*/
+    background: transparent;
+    border: none;
+    gap: 5px; /*Es el espacio que se deja entre las 3 lineas del menú Toggle*/
+}
+
+.menu-toggle span{
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    transition: 0.3s; /*Suaviza los cambios entre las imágenes*/
+}
+
+/*Ajuste para celulares*/
+@media (max-width: 768px){
+    .menu-toggle{
+        display: flex; /*Hace que aparezca el botón en la versión móvil*/
+    }
+
+    .nav-links{
+        display: none; /*Ocultamos la lista por defecto*/
+        flex-direction: column; /*Muestra la listas de las páginas de nuestro sitio web verticalmente en la versión móvil*/
+        position: absolute; 
+        top: 60px; /*Debajo de la barra*/
+        left: 0;
+        width: 100%;
+        background-color: rgba(76, 76, 76, 0.95); 
+        padding: 20px 0; 
+        text-align: center;
+    }
+
+    /*Clase que activa JavaScript para mostrar el menú*/
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav ul li{
+        float: none; 
+        width: 100%;
+    }
+}
+/*-------------------*/
+/*SLIDER DE PRODUCTOS*/
+/*-------------------*/
+#carrete{
+    width: 60%; /*El slider ocupa el 60% del ancho de la pantalla */
+    max-width: 1000px;   /*Limita el ancho máximo para que no ocupe todo el espacio de la pantalla*/
+    margin: 30px auto 0 auto; /*Añadimos margen arriba y abajo para separarlo del banner*/
+    overflow: hidden; /*Oculta las imágenes que quedan fuera del área visible del slider */
+    position: relative; /*Posiciona los botones para navegar entre las imágenes dentro de las imágenes*/ 
+}
+
+/* Contenedor interno que agrupa todas las imágenes del slider */
+.contenedor-imagenes{
+    display: flex; /*Coloca las imágenes en una fila horizontal*/
+    width: 100%; /*Ocupa todo el ancho del contenedor padre*/ 
+    transition: transform 0.5s ease-in-out; /*Hace una animación suave de desplazamiento al pasar entre imágenes*/
+}
+
+/* Cada imagen individual dentro del slider */
+.item-galeria{
+    min-width: 100%; /*Cada imagen ocupa el 100% del ancho del slider*/
+    box-sizing: border-box; /*Incluye padding y bordes dentro del tamaño del elemento*/
+    margin: 0; /*Quita márgenes por defecto de la etiqueta <figure>*/
+}
+
+/* Imagen del slider */
+.item-galeria img{
+    width: 100%;  
+    height: auto; /*Mantiene la proporción original de la imagen*/
+    display: block; /*Elimina espacios en blanco debajo de la imagen*/
+    border-radius: 8px; /*Redondea ligeramente las esquinas del slider*/
+}
+
+/*Navegación en el slider*/
+/*Contenedor de los botones de navegación (flechas)*/
+.navegacion-carrete{
+    position: absolute; /*Posiciona los botones sobre el slider*/ 
+    top: 50%; /*Coloca los botones verticalmente al centro*/
+    width: 100%; 
+    display: flex; /*Alinea los botones en una fila*/ 
+    justify-content: space-between; /*Coloca un botón a cada extremo*/ 
+    transform: translateY(-50%); /*Ajuste fino para centrar verticalmente*/ 
+    pointer-events: none; /*Permite interactuar con la imagen sin que el contenedor bloquee los clics*/
+    z-index: 10; /*Mantiene los botones por encima de las imágenes*/
+}
+
+.nav-button{
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semi-transparente */
+    color: white; /*Color del ícono*/ 
+    border: none;  /*Elimina borde por defecto*/
+    padding: 10px; /*Área clickeable del botón*/
+    cursor: pointer; /*Cambia el cursor a mano*/
+    pointer-events: auto; /*Reactiva el click solo en los botones*/
+    font-size: 30px; /*Tamaño del ícono*/
+    transition: background 0.3s; /*Transición suave de fondo*/
+}
+
+/*Efecto visual al pasar el mouse por los botones*/
+.nav-button:hover{
+    background-color: rgba(188, 207, 13, 0.8); /* Color verde diller&diller*/
+    padding: 8px; /*Tamaño del sombreado de los botones para pasar de una imagen a otra cuando el cursor está sobre ellos*/
+}
+
+/*Ajuste para celulares*/
+@media (max-width: 768px){
+  #carrete{
+     width: 90%; /*En móviles el slider ocupa más ancho para aprovechar la pantalla*/
+  }
+}
+
+/*--------------------------*/
+/*TARJETAS DE ESPECIALIDADES*/
+/*--------------------------*/
+/*Tarjeta individual*/
+.card {
+  position: relative; /*Permite posicionar textos e íconos encima de la imagen*/
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5); /*Crea una sombra alrededor de la tarjeta*/
+  transition: 0.3s; /*Suaviza cambios visuales*/ 
+  border-radius: 15px; /*Redondea las esquinas de la tarjeta*/
+  width: 450px; /*Ancho de la tarjeta*/
+  height: 300px; /*Altura de la tarjeta*/ 
+  margin: 20px; /*Crea un margen alededor de la tarjeta para asegurar un espacio entre ésta y los otros elementos de la página*/
+  overflow: hidden; /*Evita que el contenido salga de los bordes redondeados de la tarjeta*/
+}
+
+/*Imagen principal de la tarjeta*/
+.card img{
+  overflow: hidden; /*Esto evita que la imagen se salga de las esquinas redondeadas de la tarjeta*/ 
+  width: 100%; /*La imagen ocupa todo el ancho de la tarjeta*/
+  height: 100%; /*La imagn ocupa todo el alto de la tarjeta*/
+  object-fit: cover; /*Recorta la imagen para asegurar que la foto llene la tarjeta sin deformarse*/
+}
+
+/*Contenedor general de todas las tarjetas*/
+.contenedor_tarjetas{
+  display: flex; /* Activa el modo de alineación flexible */
+    flex-wrap: wrap; /* Permite que las tarjetas bajen a la siguiente fila si no caben */
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+    gap: 20px; /* Crea el espacio uniforme entre tarjetas */
+    padding: 40px 20px; /* Espacio interno para que no peguen a los bordes de la pantalla */
+    max-width: 1200px; /* Evita que el grupo de tarjetas se estire demasiado en pantallas gigantes */
+    margin: 0 auto; /* Centra todo el bloque en la página */
+}
+
+/*Header de la tarjeta (ícono + título)*/
+.header_tarjeta{
+  position: absolute; /*Permite colocar el header en la parte superior de la imagen*/
+  top: 20px; /*Separación de la parte superior*/
+  left: 20px; /*Separación de la parte izquierda*/
+  display: flex; /*Alinea ícono y texto en una fila*/ 
+  align-items: center;/*Centra el título para que quede a la mitad del ícono*/
+  gap: 10px; /*Espacio entre el ícono y el texto*/
+  color: #ffffff; /*Texto en blanco para contraste*/
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Sombra suave negra en las letras para que no se pierdan con el fondo*/
+  letter-spacing: 1px; /*Separación entre las letras*/
+  z-index: 2; /*Asegura que el header quede encima de la imagen*/
+}
+
+/*Ícono de la especialidad*/
+.card img.icono_especialidad { /*Sobre escribe el CSS para el ícono para darle mas prioridad que a la imagen de la tarjeta*/
+  width: 80px; /*Controla el tamaño del ícono de especialidades*/
+  height: 80px; /*Controla el tamaño del ícono de especialidades*/
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8)); /*Agrega un sombreado en el ícono para que no se pierda en el fondo*/
+  object-fit: contain; /*Mantiene la proporción del ícono*/
+  flex-shrink: 0; /*Evita que el ícono se reduzca*/
+}
+
+/*Barra inferior con información de la tarjeta*/
+.descripcion_tarjeta{
+  position: absolute; /*Se superpone sobre la imagen*/
+  bottom: 0; /*Pega el texto a la parte inferior de la tarjeta*/
+  left: 0;
+  width: 100%; /*Ocupa el 100% del ancho de la tarjeta*/
+  background: rgba(255, 255, 255, 0.60); /* Fondo blanco con 60% de opacidad */
+  padding: 20px; /*Espaciado interno para que el texto no se pegue a las orillas*/
+  box-sizing: border-box; /*Incluye padding dentro del ancho total*/
+  backdrop-filter: blur(5px); /*Difumina un poco la imagen de fondo de la tarjeta*/
+  z-index: 2; /*Pone la descripción encima de la imagen*/
+}
+
+/*Subtitulo dentro de la barra*/
+.descripcion_tarjeta h4 {
+  margin: 0; /*Elimina márgenes por defecto*/
+  font-size: 18px; /*Tamaño del subtítulo*/
+  color: #333; 
+  text-transform: uppercase; /*Pone el texto en mayúsulas*/
+}
+
+/*Descripción de la tarjeta*/
+.descripcion_tarjeta p {
+  margin: 5px 0 0 0; /*Separación superior respecto al subtítulo*/
+  font-size: 14px; /*Tamaño del texto descriptivo*/
+  color: #666; 
+  max-width: 80%; /*Deja espacio para el botón de play a la derecha*/
+}
+
+/*Botón de play*/
+.boton_play{
+  position: absolute; /*Se posiciona dentro de la barra*/
+  right: 20px; /* Separación de la derecha*/
+  bottom: 20px; /*Separación de abajo*/
+  background: #BCCF0D; /*Verde diller&diller en el botón*/
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; /*Hace el botón circular*/
+  display: flex; /*Centra el ícono*/
+  align-items: center;
+  justify-content: center;
+  font-size: 12px; /*Tamaño del ícono*/
+}
+
+/*Ajuste para dispositivos móviles*/
+@media (max-width: 768px) {
+
+  /*Acomodo de las tarjetas en la versión móvil*/
+  .contenedor_tarjetas {
+    justify-content: space-between; /*Acomoda las tarjetas en filas de 2*/
+  }
+
+  /*Reduce el tamaño de las tarjetas en ela versión móvil*/
+  .card {
+    width: calc(50% - 10px); /* 2 por fila */
+    height: 180px; 
+    margin: 5px 0; /*Menos separación vertical*/ 
+  }
+
+  /*Ajusta la imagen al nuevo tamaño*/
+  .card img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /*Vuelve al header más compacto*/
+  .header_tarjeta{
+    top: 8px;
+    left: 8px;
+    gap: 6px;
+  }
+
+    .header_tarjeta h4 {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  /*Reduce el tamaño del ícono*/
+  .card img.icono_especialidad {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* Barra blanca más pequeña */
+  .descripcion_tarjeta {
+    padding: 8px 12px;
+    min-height: 40px;/* hace la barra blanca más ancha que el botón */
+    backdrop-filter: blur(3px);
+  }
+
+  /* Ocultar texto en móvil para priorizar la imagen*/
+  .descripcion_tarjeta h4,
+  .descripcion_tarjeta p {
+    display: none;
+  }
+
+  /*Ajuste del botón play*/
+  .boton_play {
+    width: 26px;
+    height: 26px;
+    font-size: 10px;
+    right: 12px;
+    bottom: 8px;
+  }
+}
+
+/*--------------------------*/
+/*  FORMULARIO DE CONTACTO  */
+/*--------------------------*/
+.banner_contacto {
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.contenedor_contacto {
+    position: relative; /* Base para que el formulario flote encima */
+    width: 100%;
+    max-width: 1100px;
+    height: 550px; /* Altura del mapa */
+    background-color: #BCCF0D; /* Fondo verde diller */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    padding: 0px; /* Quitamos el padding para que la tarjeta blanca pueda tocar el borde */
+}
+
+/* El mapa ocupa todo el fondo del contenedor */
+.contenedor_mapa {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    bottom: 25px;
+    width: 60%; /* Ajusta este % para que se meta más o menos debajo del formulario */
+    right: 25px;
+    z-index: 1;
+    border-radius: 15px; /*Redondeamos las esquinas del mapa*/
+    overflow: hidden;
+}
+
+.mapa, gmp-map {
+    width: 100%;
+    height: 100%;
+}
+
+/* LA TARJETA BLANCA: Flotando a la derecha */
+.contenedor_formulario {
+    position: absolute;
+    top: 50%;
+    right: 0px; /*Para que quede pegado al borde derecho*/
+    transform: translateY(-50%); /* Centrado vertical perfecto */
+    z-index: 10;
+    width: 90%;
+    max-width: 420px;
+}
+
+.contacto {
+    background-color: white;
+    padding: 40px;
+    border-radius: 25px 0 0 25px; /*Quitamos el redondeado del lado derecho para que encaje con la tarjeta verde*/
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1); /*Sombra solo a la izquierda para profundidad*/
+}
+
+.contacto h2 {
+    margin: 0 0 25px 0;
+    font-size: 28px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000;
+}
+
+.contacto label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+.contacto input, 
+.contacto select, 
+.contacto textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.contacto textarea {
+    height: 120px; /* Espacio para el mensaje */
+    resize: none;
+}
+
+/* BOTÓN VERDE LIMA REDONDEADO */
+.contacto button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 30px;
+    background-color: #BCCF0D; /* Verde Lima */
+    color: white;
+    border: none;
+    border-radius: 30px; /* Totalmente redondeado */
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.contacto button:hover {
+    background-color: #a4b819;
+}
+
+/* --- RESPONSIVO PARA MÓVILES --- */
+@media (max-width: 768px) {
+    .contenedor_contacto {
+        height: auto; /*Permite que el contenedor crezca con el contenido*/
+        display: flex;
+        flex-direction: column;
+        background-color: #BCCF0D;
+        box-shadow: none;
+        align-items: center;
+        padding: 20px; /*Espacio para que el formulario no toque los bordes verdes*/
+        gap: 10px; /*Separación entre el formulario y el mapa*/
+    }
+    .contenedor_mapa {
+        position: relative;
+        height: 300px;
+        order: 2; /* Mapa abajo en móvil */
+    }
+    .contenedor_formulario {
+        position: relative; /*El formulario ya no flota sobre el mapa*/
+        top: 0;
+        right: 0;
+        transform: none;
+        max-width: 100%;
+        width: 100%;
+        padding: 10px;
+        order: 1; /* Formulario arriba en móvil */
+    }
+    .contacto {
+        border-radius: 20px;
+        padding: 25px; 
+    }
+
+    .contenedor_mapa{
+      position: relative;
+      width: 100%; /*Ocupa todo el ancho disponible*/
+      height: 300px; /*Altura fija para el mapa en la versión móvil*/
+      top: 0; 
+      left: 0; 
+      bottom: 0; 
+      order: 2; /*El mapa se muestra como el segundo elemento*/
+      border-radius: 15px;
+      overflow: hidden;
+    }
+}
+
+/*--------------------------*/
+/*  FOOTHER DEL SITIO WEB   */
+/*--------------------------*/
+body{
+  margin: 0;/*Elimina el espacio en blanco que el navegadorpone por defecto*/
+  padding: 0;
+}
+.site-footer {
+    background-color: #1a1a1a; /* Fondo gris muy oscuro */
+    color: white;
+    padding: 40px 0 20px 0; /*Quitamos padding lateral para que el fondo ocupe todo el ancho*/
+    font-family: Arial, sans-serif;
+    text-align: center;
+    width: 100%;/* Ocupa todo el ancho */
+    box-sizing: border-box; /*Asegura que el padding no estire el ancho más del 100%*/
+
+}
+
+/* Este contenedor mantiene el texto centrado y no tan pegado a las orillas */
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;/*Limita el ancho del texto, pero no del fondo*/
+    margin: 0 auto; /*Centra el bloque de las 3 columnas*/
+    flex-wrap: wrap; /*Para que sea responsivo en móviles*/
+    width: 100%;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.footer-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #BCCF0D; /* Línea verde azulada */
+    padding-bottom: 10px;
+    display: block;
+}
+
+.section-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.section-content a, .section-content p {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.section-content a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    border-top: 1px solid #5F5F63;
+    padding-top: 20px;
+    font-size: 0.85rem;
+}
+
+

@@ -1,0 +1,299 @@
+<!DOCTYPE html> 
+<html lang="es">
+    <head>
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>laserdiller</title>
+        <link rel="stylesheet" href="style.css"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!--Llama un estilo predeterminado para los íconos de flecha en el carrete de imágenes-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6myHzS10YXdcazAFalmXvDkrYCp5cLc8&libraries=maps,marker&v=weekly"
+            defer></script><!--Llama la API de Google maps-->
+    </head>
+    <!------------------------------------------------
+   Creación de los elementos del sitio web en HTML 
+   ------------------------------------------------->
+
+<body style="margin: 0; padding: 0;">
+
+    <!-- BANNER DE PROMOCIÓN DE PRODUCTOS -->
+    <img 
+        src="imagenes/prueba.png"
+        alt="banner"
+        class="banner_principal"
+        srcset="imagenes/prueba_pequeña.png 480w, imagenes/prueba.png 2000w"
+        sizes="100vw"
+    >
+
+    <!-- BARRA DE MENÚ -->
+    <nav class="barra_de_menu">
+        <div class="logo">
+            <img src="imagenes/logo_laser-scaled.png" alt="Logo diller & diller">
+        </div>
+
+        <button class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-links" id="nav-list">
+            <li><a href="#">Nuestros equipos</a></li>
+            <li><a href="#">Promotores</a></li>
+            <li><a href="#">Galería</a></li>
+            <li><a href="#">Tienda</a></li>
+        </ul>
+    </nav>
+
+    <!-- CARRETE DE IMAGENES -->
+    <section id="carrete">
+        <div class="contenedor-imagenes">
+            <figure class="item-galeria"><img src="imagenes/carrete1.png" alt="Imagen 1"></figure>
+            <figure class="item-galeria"><img src="imagenes/carrete2.png" alt="Imagen 2"></figure>
+            <figure class="item-galeria"><img src="imagenes/carrete3.png" alt="Imagen 3"></figure>
+            <figure class="item-galeria"><img src="imagenes/carrete4.png" alt="Imagen 4"></figure>
+            <figure class="item-galeria"><img src="imagenes/carrete5.png" alt="Imagen 5"></figure>
+            <figure class="item-galeria"><img src="imagenes/carrete6.png" alt="Imagen 6"></figure>
+            <figure class="item-galeria"><img src="imagenes/carrete7.png" alt="Imagen 7"></figure>
+        </div>
+
+        <nav class="navegacion-carrete">
+            <button class="nav-button prev-button" aria-label="Anterior">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="nav-button next-button" aria-label="Siguiente">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </nav>
+    </section>
+
+    <!-- TARJETAS DE ESPECIALIDADES -->
+    <section class="contenedor_tarjetas">
+
+        <div class="card">
+            <!--Crea una división que actúa como contenedor para el contenido de la tarjeta -->
+            <img 
+                src="imagenes/especialidad_medica.png"
+                srcset="imagenes/especialidad_medica_movil.png 480w, imagenes/especialidad_medica.png 2000w"
+                sizes="(max-width: 768px) 280px, 450px"
+                alt="Especialidad Médica"
+                style="width:100%"
+            >
+
+            <div class="header_tarjeta">
+                <!-- Define otro contenedor dentro de la tarjeta que contiene el tílulo y la descripción -->
+                <img src="imagenes/icono_medico.png" class="icono_especialidad" alt="icono">
+                <h4><b>ESPECIALIDAD MÉDICA</b></h4>
+            </div>
+
+            <div class="descripcion_tarjeta">
+                <h4><b>Subtítulo</b></h4>
+                <p>Descripción</p>
+                <div class="boton_play">▶</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagenes/especialidad_dental.png" alt="Especialidad Dental" style="width:100%">
+            <div class="header_tarjeta">
+                <img src="imagenes/icono_medico.png" class="icono_especialidad" alt="icono">
+                <h4><b>ESPECIALIDAD DENTAL</b></h4>
+            </div>
+            <div class="descripcion_tarjeta">
+                <h4><b>Subtítulo</b></h4>
+                <p>Descripción</p>
+                <div class="boton_play">▶</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagenes/especialidad_estetica.png" alt="Especialidad Estética" style="width:100%">
+            <div class="header_tarjeta">
+                <img src="imagenes/icono_medico.png" class="icono_especialidad" alt="icono">
+                <h4><b>ESPECIALIDAD ESTÉTICA</b></h4>
+            </div>
+            <div class="descripcion_tarjeta">
+                <h4><b>Subtítulo</b></h4>
+                <p>Descripción</p>
+                <div class="boton_play">▶</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="imagenes/especialidad_mascotas.png" alt="Especialidad Mascotas" style="width:100%">
+            <div class="header_tarjeta">
+                <img src="imagenes/icono_medico.png" class="icono_especialidad" alt="icono">
+                <h4><b>ESPECIALIDAD MASCOTAS</b></h4>
+            </div>
+            <div class="descripcion_tarjeta">
+                <h4><b>Subtítulo</b></h4>
+                <p>Descripción</p>
+                <div class="boton_play">▶</div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- FORMULARIO DE CONTACTO -->
+    <section class="banner_contacto">
+        <div class="contenedor_contacto">
+
+            <!-- Mapa -->
+            <div class="contenedor_mapa">
+                <div class="mapa">
+                    <gmp-map
+                        center="19.415665060200975, -99.19500409977724"
+                        zoom="10"
+                        map-id="DEMO_MAP_ID"
+                        style="height: 100%; width: 100%;">
+                    </gmp-map>
+                </div>
+            </div>
+        
+            <!-- Formulario -->
+            <div class="contenedor_formulario">
+                <form class="contacto" id="formContacto">
+                    <h2>Contáctanos</h2>
+
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required>
+
+                    <label for="asunto">Asunto</label>
+                    <select id="asunto" name="asunto">
+                        <option value="Más información">Más información</option>
+                        <option value="Agendar demostración">Agendar una demostración</option>
+                        <option value="Soporte técnico">Soporte técnico</option>
+                    </select>
+
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" required></textarea>
+
+                    <button id="submit" type="submit">Enviar</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!--FOOTER DEL SITIO WEB-->
+    <footer class="site-footer">
+        <div class="footer-container">
+
+            <div class="footer-section">
+                <h3>CONTACTO</h3>
+                <div class="section-content">
+                    <a href="link ejemplo" target="_blank">Contacto</a>
+                    <p>Dirección: Kansas 71. Colonia: Ampliación Nápoles. Delegación Benito Juarez, CDMX, CP. 03840</p>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>LEGAL</h3>
+                <div class="section-content">
+                    <p>DILLER & DILLER MEDIZIN TECHNIK SA DE CV</p>
+                    <a href="link ejemplo" target="_blank">Aviso legal</a>
+                    <a href="link ejemplo" target="_blank">Términos y condiciones</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>SÍGUENOS</h3>
+                <div class="section-content">
+                    <a href="https://www.facebook.com/laserdillerdiller" target="_blank">Facebook</a>
+                    <a href="https://x.com/laserdiller" target="_blank">Twitter</a>
+                    <a href="https://www.instagram.com/laserdiller/" target="_blank">Instagram</a>
+                    <a href="https://www.youtube.com/channel/UCNEF8k31o3s1l8D6EOhIn9Q" target="_blank">Youtube</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Copyright: Diller & Diller Medizin Technik</p>
+        </div>
+    </footer>
+
+
+         <script>
+            //------------------------
+            //FUNCIONES DE JavaScript
+            //------------------------
+
+            //FUNCIONES DEL MENÚ EN LA VERSIÓN MÓVIL 
+            //Ajusta el texto de la barra de menú para que la versión móbil guarde el texto en un Toggle 
+            const menuBtn = document.getElementById('mobile-menu');
+            const navList = document.getElementById('nav-list');
+
+            //Abrir y cerrar el menú Toggle
+            menuBtn.addEventListener('click',() =>{
+                navList.classList.toggle('active');
+            });
+
+            //Cierra el menú Toggle cuando se da click fuera del área de éste 
+            document.addEventListener('click', (event) =>{
+                //Si el menú está abierto y el click NO fue dentro del menú ni en el botón 
+                if(navList.classList.contains('active')&&
+                    !navList.contains(event.target)&&
+                    !menuBtn.contains(event.target)){
+                        navList.classList.remove('active');
+                    }
+            })
+
+            //FUNCIONES CARRETE DE FOTOS DINÁMICO 
+            let currentIndex = 0; //Se declara fuera de la función para que su valor se mantenga guardado cada vez que se haga click 
+
+            //Detecta cuando se da click en los botones para navegar en en el carrete de fotos 
+            document.querySelector('.prev-button').addEventListener('click', () => {
+                navigate(-1);
+            });
+            document.querySelector('.next-button').addEventListener('click', () => {
+                navigate(1);
+            });
+            //contenedorImagenes es la "tira" que contiene a todas las imágenes
+            //totalImagenes Cuenta cuántos elementos con la clase .item-galeria existen
+            function navigate(direction){
+                const contenedorImagenes = document.querySelector('.contenedor-imagenes');
+                const totalImagenes = document.querySelectorAll('.item-galeria').length;
+
+                //Si estamos en la pimera imagen (0) y damos click en "anterior" el resultado de la operación sería -1. Al sumar el total de imagenes garantizamos que el número siempre sea positivo
+                currentIndex = (currentIndex + direction + totalImagenes) % totalImagenes; //El operador módulo (%) crea un bucle infinito para pasar de la última foto a la primera y viceversa 
+                const offset = -currentIndex * 100; //Calcula el Offset. Si cada imagen ocupa el 100% del ancho del contenedor 
+
+                contenedorImagenes.style.transform = `translateX(${offset}%)`; //Usa el Ofset calculado para desplazar la imagen si es necesario, de acuerdo con lo que se calculó en la línea anterior 
+            }
+
+            //FUNCIONES MENÚ EMERGENTE EN EL FORMULARIO DE CONTACTO
+            function manejarFormulario() {
+                const formulario = document.getElementById("formContacto");
+                const asunto = document.getElementById("asunto");
+
+                formulario.addEventListener("submit", function (e) {
+                    e.preventDefault(); // evita recargar la página
+
+                    const data = {
+                        nombre: document.getElementById("nombre").value,
+                        asunto: document.getElementById("asunto").value, 
+                        mensaje: document.getElementById("mensaje").value
+                    };
+
+                    fetch("enviar-correo.php",{
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(res => res.json())
+                    .then(resp => {
+                        alert("Mensaje enviado correctamente");
+                            formulario.reset();
+                    })
+                    .catch(err =>{
+                        alert("Error al enviar mensaje");
+                        console.error(err);
+                    });
+                });
+            }
+            document.addEventListener("DOMContentLoaded",manejarFormulario)
+         </script>
+    </body>
+</html>
